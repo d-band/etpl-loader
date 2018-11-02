@@ -1,0 +1,70 @@
+{
+  "name": "etpl-loader",
+  "version": "1.0.0",
+  "description": "ejs template loader",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js src test/*.test.js",
+    "build": "rimraf lib && babel src --out-dir lib",
+    "prepublish": "npm run build",
+    "test": "NODE_ENV=test nyc mocha --no-timeouts",
+    "report": "nyc report --reporter=html",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "@babel/register"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-band/etpl-loader.git"
+  },
+  "keywords": [
+    "ejs",
+    "template",
+    "webpack",
+    "loader"
+  ],
+  "author": "d-band",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d-band/etpl-loader/issues"
+  },
+  "homepage": "https://github.com/d-band/etpl-loader#readme",
+  "peerDependencies": {
+    "@babel/core": "*",
+    "webpack": "*"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-istanbul": "^5.1.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.8.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.23.1"
+  },
+  "dependencies": {
+    "loader-utils": "^1.1.0"
+  }
+}
