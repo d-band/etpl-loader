@@ -5,7 +5,7 @@ import preParse from './preParse';
 function ejsPlugin (babel, options) {
   const { types: t } = babel;
   const globals = options.globals || ['window', 'console'];
-  const escapeFun = options.escape || 'ESCAPE';
+  const encodeFun = options.encode || 'ENCODE';
   return {
     visitor: {
       AssignmentExpression (path) {
@@ -23,8 +23,8 @@ function ejsPlugin (babel, options) {
             ReferencedIdentifier (p) {
               const v = p.node.name;
               if (isGlobal(v) && globals.indexOf(v) < 0) {
-                if (v === 'ESCAPE_FUNCTION') {
-                  p.node.name = escapeFun;
+                if (v === 'ENCODE_FUNCTION') {
+                  p.node.name = encodeFun;
                 } else {
                   p.node.name = `data.${v}`;
                 }

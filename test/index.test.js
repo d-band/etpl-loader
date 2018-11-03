@@ -5,7 +5,7 @@ import webpack from 'webpack';
 
 const loader = join(__dirname, '../src/index.js');
 
-function build(dir, callback, isEscape) {
+function build(dir, callback, isEncode) {
   const cwd = join(__dirname, 'fixtures', dir);
   const outputPath = join(cwd, 'dist');
   const expectPath = join(__dirname, 'expects', dir);
@@ -20,7 +20,7 @@ function build(dir, callback, isEscape) {
     module: {
       rules: [{
         test: /\.tpl?/,
-        loader: `${loader}?${isEscape ? 'escape=window.escape' : ''}`,
+        loader: `${loader}?${isEncode ? 'encode=window.encode' : ''}`,
         exclude: /node_modules/,
       }]
     }
@@ -57,8 +57,8 @@ describe('loader test', function () {
     build('include', done);
   });
 
-  it('should support custom escape', done => {
-    build('escape', done, true);
+  it('should support custom encode', done => {
+    build('encode', done, true);
   });
 
   it('should support include error', done => {

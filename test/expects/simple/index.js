@@ -90,15 +90,43 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _template_tpl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _template_tpl__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_tpl__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index_tpl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _index_tpl__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_tpl__WEBPACK_IMPORTED_MODULE_0__);
 
 
-console.log(_template_tpl__WEBPACK_IMPORTED_MODULE_0___default()({
+window.ENCODE = (str) => {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+};
+
+document.getElementById('root').innerHTML = _index_tpl__WEBPACK_IMPORTED_MODULE_0___default()({
   name: 'hello',
-  code: 'world',
-  list: ['a', 'b', 'c']
-}));
+  email: 'hello@example.com',
+  skills: [
+    '<a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a>',
+    '<a href="https://www.oracle.com/java/">Java</a>',
+    '<a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>',
+    '<a href="https://golang.org">Go</a>'
+  ],
+  projects: [{
+    name: '<a href="https://github.com/d-band/etpl-loader">etpl-loader</a>',
+    description: 'Ejs template webpack loader.'
+  }, {
+    name: '<a href="https://github.com/d-band/dool">dool</a>',
+    description: 'Build tool based on webpack.'
+  }, {
+    name: '<a href="https://github.com/d-band/yax">yax</a>',
+    description: 'Yet another store using redux.'
+  }],
+  site: {
+    name: 'D-Band',
+    year: '2018'
+  }
+});
 
 /***/ }),
 /* 1 */
@@ -106,23 +134,31 @@ console.log(_template_tpl__WEBPACK_IMPORTED_MODULE_0___default()({
 
 module.exports = function (data) {
   var out = '<p>';
-  out += ESCAPE(data.name);
+  out += ENCODE(data.name);
   out += '</p><p>';
-  out += data.code;
-  out += '</p>';
+  out += ENCODE(data.email);
+  out += '</p><ul> ';
 
-  for (var i = 0; i < 10; i++) {
-    out += '<span>';
-    out += ESCAPE(i);
-    out += '</span>';
+  for (var i = 0; i < data.skills.length; i++) {
+    var skill = data.skills[i];
+    out += ' <li>';
+    out += skill;
+    out += '</li> ';
   }
 
-  data.list.forEach(function (item) {
-    console.log(item);
-    out += ' <div>';
-    out += ESCAPE(item);
-    out += '</div>';
+  out += '</ul><div> ';
+  data.projects.forEach(project => {
+    out += ' <div> <h3>';
+    out += project.name;
+    out += '</h3> <p>';
+    out += ENCODE(project.description);
+    out += '</p> </div> ';
   });
+  out += '</div><div>Copyright © ';
+  out += ENCODE(data.site.year);
+  out += '&nbsp;';
+  out += ENCODE(data.site.name);
+  out += '. All Rights Reserved.</div>';
   return out;
 };
 

@@ -106,23 +106,23 @@ console.log(_template_tpl__WEBPACK_IMPORTED_MODULE_0___default()({
 
 module.exports = function (data) {
   var out = '<p>';
-  out += ESCAPE(data.name);
+  out += ENCODE(data.name);
   out += '</p><p>';
   out += data.code;
   out += '</p>';
 
   for (var i = 0; i < 10; i++) {
     out += '<span>';
-    out += ESCAPE(i);
+    out += ENCODE(i);
     out += '</span>';
   }
 
   data.list.forEach(function (item) {
     out += ' <div>';
-    out += ESCAPE(item);
+    out += ENCODE(item);
     out += '</div>';
   });
-  out += ESCAPE(data.footer);
+  out += ENCODE(data.footer);
   return out;
 };
 

@@ -1,0 +1,1 @@
+<div>Copyright © <%=site.year%>&nbsp;<%=site.name%>. All Rights Reserved.</div>

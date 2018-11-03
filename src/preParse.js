@@ -15,7 +15,7 @@ function format (str, filePath) {
       if (first === '-') {
         return `';out+=(${unescape(code.slice(1))});out+='`;
       } else if (first === '=') {
-        return `';out+=ESCAPE_FUNCTION(${unescape(code.slice(1))});out+='`;
+        return `';out+=ENCODE_FUNCTION(${unescape(code.slice(1))});out+='`;
       } else {
         const match = code.match(/^include\((.+)?\)$/);
         if (match) {
