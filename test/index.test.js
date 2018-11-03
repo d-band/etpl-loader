@@ -5,7 +5,7 @@ import webpack from 'webpack';
 
 const loader = join(__dirname, '../src/index.js');
 
-function build(dir, callback, isEncode) {
+function build (dir, callback, isEncode) {
   const cwd = join(__dirname, 'fixtures', dir);
   const outputPath = join(cwd, 'dist');
   const expectPath = join(__dirname, 'expects', dir);
@@ -21,7 +21,7 @@ function build(dir, callback, isEncode) {
       rules: [{
         test: /\.tpl?/,
         loader: `${loader}?${isEncode ? 'encode=window.encode' : ''}`,
-        exclude: /node_modules/,
+        exclude: /node_modules/
       }]
     }
   };
@@ -41,7 +41,7 @@ function build(dir, callback, isEncode) {
 
     const expect = fs.readFileSync(expectFile, 'utf-8');
     assert.strictEqual(actual, expect);
-    
+
     callback();
   });
 }
