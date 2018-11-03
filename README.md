@@ -16,7 +16,7 @@ npm i etpl-loader -S
 ## Usage
 
 **index.tpl**
-```
+```ejs
 <p><%=name%></p>
 <p><%=email%></p>
 <ul>
@@ -36,12 +36,12 @@ npm i etpl-loader -S
 ```
 
 **footer.tpl**
-```
+```ejs
 <div>Copyright © <%=site.year%>&nbsp;<%=site.name%>. All Rights Reserved.</div>
 ```
 
 **index.js**
-```
+```js
 import tpl from './index.tpl';
 
 window.ENCODE = (str) => {
@@ -80,7 +80,7 @@ document.getElementById('root').innerHTML = tpl({
 ```
 
 **webpack.config.js**
-```
+```js
 module.exports = {
   module: {
     rules: [{
@@ -95,8 +95,8 @@ module.exports = {
 
 |Name|Type|Default|Description|
 |:--:|:--:|:-----:|:----------|
-|**`globals`|`{Array}`|`['window', 'console']`|Global variables|
-|**`encode`|`{String}`|`'ENCODE'`|Encode function name|
+|**`globals`**|`{Array}`|`['window', 'console']`|Global variables|
+|**`encode`**|`{String}`|`'ENCODE'`|Encode function name|
 
 ## Report a issue
 
