@@ -52,4 +52,4 @@ export default function preParse (source, filePath) {
     .replace(/out\+='(\s+)';/gi, '');
 
   return { source, result };
-};
+}
