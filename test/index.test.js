@@ -81,4 +81,11 @@ describe('loader test', function () {
       done();
     });
   });
+
+  it('should support transform error', done => {
+    build('transform-error', err => {
+      assert.ok(/SyntaxError/.test(err.message));
+      done();
+    });
+  });
 });

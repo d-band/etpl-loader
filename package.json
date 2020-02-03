@@ -1,6 +1,6 @@
 {
   "name": "etpl-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ejs template loader",
   "main": "lib/index.js",
   "scripts": {

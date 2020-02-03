@@ -45,7 +45,7 @@ module.exports = function (source) {
     transform(`module.exports = function(){${data.result}}`, {
       plugins: [[ejsPlugin, query]]
     }, (err, result) => {
-      callback(err, result.code);
+      callback(err, result ? result.code : null);
     });
   } catch (err) {
     callback(err);
